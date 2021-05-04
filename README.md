@@ -1,3 +1,3 @@
-#SergioSimental.github.io
+# SergioSimental.github.io
 
 Showcase of my projects
