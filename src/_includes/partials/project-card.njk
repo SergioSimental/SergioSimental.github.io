@@ -8,7 +8,9 @@
       {%- for cell in media.pieces | boardCells %}<span class="board__cell{% if cell %} board__cell--{{ cell }}{% endif %}"></span>{% endfor %}
     </div>
     {%- else %}
-    <img src="{{ media.src }}" alt="{{ media.alt }}" loading="lazy" decoding="async"{% if media.position %} style="object-position: {{ media.position }}"{% endif %}>
+    <img src="{{ media.src }}" alt="{{ media.alt }}"
+      sizes="{% if project.featured %}(min-width: 1200px) 680px, (min-width: 760px) 58vw, 100vw{% else %}(min-width: 1200px) 570px, (min-width: 980px) 48vw, 100vw{% endif %}"
+      {%- if media.position %} style="object-position: {{ media.position }}"{% endif %}>
     {%- endif %}
 
     {%- if media.video %}

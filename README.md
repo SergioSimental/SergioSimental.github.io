@@ -1,8 +1,8 @@
 # Portfolio
 
-Sergio Simental Jr.'s resume and projects site. Built with [Eleventy](https://www.11ty.dev/) and published with GitHub Pages.
+Sergio Simental Jr.'s résumé and projects site. Built with [Eleventy](https://www.11ty.dev/) and published with GitHub Pages.
 
-- **Resume & experience:** `/` (home page)
+- **Résumé & experience:** `/` (home page)
 - **Projects:** `/projects/`
 
 ## Run it locally
@@ -28,7 +28,7 @@ Everything you'd normally change is data, not HTML.
 
 ### Add a project
 
-1. Put its screenshot (and optional demo video) in `src/assets/media/`.
+1. Put its screenshot (and optional demo video) in `src/assets/media/`. Any size JPG or PNG is fine: the build makes small AVIF/WebP/JPEG versions automatically. Keep demo videos short and compressed (under ~3 MB).
 2. Copy one of the files in `src/projects/` to a new name, e.g. `src/projects/my-app.md`, and fill in the front matter:
 
 ```yaml
@@ -62,9 +62,9 @@ The card, the project count and the teaser on the home page all update by themse
 
 Add an entry at the top of `jobs` in `src/_data/resume.json`. `metric` is optional and shows as a highlighted number.
 
-### Resume PDF
+### Résumé PDF
 
-Export your resume as PDF and save it as `src/resume.pdf`. The "Download resume" and "PDF" buttons link to it. You can also open the home page in a browser and print it: the print styles hide the menu and buttons and give a clean one-document layout.
+Export your résumé as PDF and save it as `src/resume.pdf`. The "Download résumé" and "PDF" buttons link to it. You can also open the home page in a browser and print it: the print styles hide the menu and buttons and give a clean one-document layout.
 
 **Keep your phone number out of the public PDF.**
 
