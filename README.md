@@ -7,12 +7,13 @@ Sergio Simental Jr.'s résumé and projects site. Built with [Eleventy](https://
 
 ## Run it locally
 
-Needs Node 20 or newer.
+Needs Node 22 or newer (the image tools require it).
 
 ```bash
 npm install
 npm start          # http://localhost:8080, reloads as you edit
 npm run build      # writes the finished site to _site/
+npm run check      # after a build: fails if any link, image, font or video is missing
 ```
 
 ## Updating content

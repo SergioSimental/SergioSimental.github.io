@@ -37,8 +37,12 @@ jobs:
           else
             export PATH_PREFIX="/$REPO/"
           fi
+          echo "PATH_PREFIX=$PATH_PREFIX" >> "$GITHUB_ENV"
           echo "Building with PATH_PREFIX=$PATH_PREFIX"
           npm run build
+
+      - name: Check built site
+        run: npm run check
 
       - uses: actions/configure-pages@v5
 
