@@ -1,0 +1,45 @@
+{
+  "jobs": [
+    {
+      "role": "Associate Android Developer",
+      "company": "Delta Air Lines",
+      "location": "Atlanta, Georgia",
+      "dates": "Jan 2023 — Jul 2026",
+      "metric": { "value": "50% → 80%", "label": "Android check-in customer satisfaction" },
+      "bullets": [
+        "Improved the Android customer satisfaction score for the check-in flow from 50% to 80%",
+        "Developed, tested, deployed and maintained features and bug fixes for the Delta check-in flow",
+        "Collaborated with product managers, business and technical teams",
+        "Integrated RESTful APIs backed by AWS Lambda to support the move from on-premises to a hybrid cloud architecture"
+      ]
+    },
+    {
+      "role": "Mobile Application Developer",
+      "company": "Pyramid Consulting, Inc. · client: Delta Air Lines",
+      "location": "Atlanta, Georgia",
+      "dates": "Sep 2021 — Jan 2023",
+      "bullets": [
+        "Moved the profile, flight payment and complimentary upgrades screens from Java and XML views to Kotlin and Jetpack Compose using MVVM",
+        "Created and maintained UI test automation for Kotlin views with an in-house tool, run in CI pipelines",
+        "Wrote unit and UI tests with Mockito, Espresso, JUnit and Robolectric",
+        "Maintained on-site device testing carts so developers could test across a range of devices"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.S. Computer Science",
+      "school": "California State Polytechnic University, Pomona",
+      "location": "Pomona, California",
+      "dates": "Aug 2018 — May 2020"
+    }
+  ],
+  "skills": [
+    { "label": "Languages", "items": ["Kotlin", "Java", "XML", "TypeScript"] },
+    { "label": "Mobile", "items": ["Android", "Jetpack Compose", "Coroutines", "Retrofit", "Hilt", "MVVM", "MVC"] },
+    { "label": "Testing", "items": ["JUnit", "Mockito", "Espresso", "Robolectric", "UI automation"] },
+    { "label": "Cloud & tools", "items": ["AWS Lambda", "Firebase", "REST APIs", "CI/CD", "Agile"] },
+    { "label": "Version control", "items": ["Git", "GitHub", "GitLab"] },
+    { "label": "AI-assisted development", "items": ["Claude", "Kiro"] }
+  ]
+}

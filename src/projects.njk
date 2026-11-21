@@ -1,0 +1,37 @@
+---
+layout: layouts/base.njk
+title: Projects
+description: Side projects by Sergio Simental Jr. — games, graphics and tools for players.
+permalink: /projects/
+---
+<section class="page-intro" aria-labelledby="page-title">
+  <p class="kicker">// {{ collections.projects.length | pad2 }} projects</p>
+  <h1 id="page-title" class="page-intro__title">Projects</h1>
+  <p class="page-intro__text">{{ site.projectsIntro }}</p>
+</section>
+
+<section class="projects" aria-label="Project list">
+  {%- for item in collections.projects %}
+  {%- if item.data.featured %}
+  {%- set project = item.data %}
+  {% include "partials/project-card.njk" %}
+  {%- endif %}
+  {%- endfor %}
+
+  <div class="projects__grid">
+    {%- for item in collections.projects %}
+    {%- if not item.data.featured %}
+    {%- set project = item.data %}
+    {% include "partials/project-card.njk" %}
+    {%- endif %}
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="contact contact--row" aria-labelledby="contact-title">
+  <div>
+    <h2 id="contact-title" class="contact__title contact__title--sm">Like what you see?</h2>
+    <a class="contact__email" href="mailto:{{ site.email }}">{{ site.email }}</a>
+  </div>
+  <a class="btn btn--outline btn--lg" href="/">← Résumé &amp; experience</a>
+</section>
