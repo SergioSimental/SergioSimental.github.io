@@ -1,8 +1,8 @@
 # Portfolio
 
-Sergio Simental Jr.'s résumé and projects site. Built with [Eleventy](https://www.11ty.dev/) and published with GitHub Pages.
+Sergio Simental Jr.'s resume and projects site. Built with [Eleventy](https://www.11ty.dev/) and published with GitHub Pages.
 
-- **Résumé & experience:** `/` (home page)
+- **Resume & experience:** `/` (home page)
 - **Projects:** `/projects/`
 
 ## Run it locally
@@ -13,7 +13,7 @@ Needs Node 22 or newer (the image tools require it).
 npm install
 npm start          # http://localhost:8080, reloads as you edit
 npm run build      # writes the finished site to _site/
-npm run check      # after a build: fails if any link, image, font or video is missing
+npm run check      # full build, then fails if any link, image, font or video is missing
 ```
 
 ## Updating content
@@ -63,9 +63,9 @@ The card, the project count and the teaser on the home page all update by themse
 
 Add an entry at the top of `jobs` in `src/_data/resume.json`. `metric` is optional and shows as a highlighted number.
 
-### Résumé PDF
+### Resume PDF
 
-Export your résumé as PDF and save it as `src/resume.pdf`. The "Download résumé" and "PDF" buttons link to it. You can also open the home page in a browser and print it: the print styles hide the menu and buttons and give a clean one-document layout.
+Export your resume as PDF and save it as `src/resume.pdf`. The "Download resume" and "PDF" buttons link to it. You can also open the home page in a browser and print it: the print styles hide the menu and buttons and give a clean one-document layout.
 
 **Keep your phone number out of the public PDF.**
 

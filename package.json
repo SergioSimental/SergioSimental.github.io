@@ -2,12 +2,12 @@
   "name": "portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "Sergio Simental Jr. — portfolio and résumé site",
+  "description": "Sergio Simental Jr. — portfolio and resume site",
   "type": "module",
   "scripts": {
     "start": "eleventy --serve",
     "build": "eleventy",
-    "check": "node scripts/check-site.mjs"
+    "check": "eleventy && node scripts/check-site.mjs"
   },
   "engines": {
     "node": ">=22"
