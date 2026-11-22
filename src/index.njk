@@ -1,0 +1,87 @@
+---
+layout: layouts/base.njk
+title: Resume
+permalink: /
+---
+<section class="hero" aria-labelledby="hero-title">
+  <p class="kicker">// {{ site.role | lower }} · {{ site.locationShort | lower }}</p>
+  <h1 id="hero-title" class="hero__title">{{ site.name }}</h1>
+  <p class="hero__intro">{{ site.intro }}{% if site.lookingFor %} {{ site.lookingFor }}{% endif %}</p>
+  <ul class="hero__contact">
+    <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+    <li><a href="{{ site.github }}">{{ site.githubLabel }}</a></li>
+    <li>{{ site.location }}</li>
+  </ul>
+  <div class="hero__actions no-print">
+    <a class="btn btn--primary btn--lg" href="{{ site.resumePdf }}">{% include "partials/icon-download.njk" %}Download resume</a>
+    <a class="btn btn--outline btn--lg" href="/projects/">See projects →</a>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="exp-title">
+  <h2 id="exp-title" class="section__title">Experience</h2>
+  {%- for job in resume.jobs %}
+  <article class="entry">
+    <div class="entry__meta">
+      <span class="entry__dates">{{ job.dates }}</span>
+      <span class="entry__place">{{ job.location }}</span>
+    </div>
+    <div class="entry__body">
+      <div>
+        <h3 class="entry__title">{{ job.role }}</h3>
+        <p class="entry__org">{{ job.company }}</p>
+      </div>
+      {%- if job.metric %}
+      <p class="metric"><span class="metric__value">{{ job.metric.value }}</span><span class="metric__label">{{ job.metric.label }}</span></p>
+      {%- endif %}
+      <ul class="entry__bullets">
+        {%- for b in job.bullets %}<li>{{ b }}</li>{% endfor %}
+      </ul>
+    </div>
+  </article>
+  {%- endfor %}
+</section>
+
+<section class="section section--split" aria-labelledby="edu-title">
+  <h2 id="edu-title" class="section__title">Education</h2>
+  <div class="section__content">
+    {%- for e in resume.education %}
+    <div class="edu">
+      <h3 class="entry__title">{{ e.degree }}</h3>
+      <p class="entry__org">{{ e.school }}</p>
+      <p class="entry__dates entry__dates--muted">{{ e.location }} · {{ e.dates }}</p>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="section" aria-labelledby="skills-title">
+  <h2 id="skills-title" class="section__title">Skills</h2>
+  <div class="skills">
+    {%- for group in resume.skills %}
+    <div class="skills__group">
+      <h3 class="label">{{ group.label }}</h3>
+      <ul class="chips">
+        {%- for item in group.items %}<li class="chip">{{ item }}</li>{% endfor %}
+      </ul>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="teaser no-print" aria-labelledby="teaser-title">
+  <a class="teaser__link" href="/projects/">
+    <span class="teaser__text">
+      <span class="eyebrow">Side projects</span>
+      <span id="teaser-title" class="teaser__title">{% for p in collections.projects %}{{ p.data.title }}{% if not loop.last %}{% if loop.revindex == 2 %}, and {% else %}, {% endif %}{% endif %}{% endfor %}</span>
+    </span>
+    <span class="teaser__cta">View projects
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+  </a>
+</section>
+
+<section class="contact no-print" aria-labelledby="contact-title">
+  <p class="kicker">// {{ site.status }}</p>
+  <h2 id="contact-title" class="contact__title">Let's build something.</h2>
+  <a class="contact__email" href="mailto:{{ site.email }}">{{ site.email }}</a>
+</section>

@@ -1,0 +1,16 @@
+{
+  "name": "Sergio Simental Jr.",
+  "handle": "~/sergio",
+  "role": "Android developer",
+  "location": "Los Angeles, California",
+  "locationShort": "Los Angeles, CA",
+  "email": "sergios3456@gmail.com",
+  "github": "https://github.com/SergioSimental",
+  "githubLabel": "github.com/SergioSimental",
+  "linkedin": "https://www.linkedin.com/in/sergio-simental-jr-150488125/",
+  "resumePdf": "/resume.pdf",
+  "intro": "Android developer with almost five years building the Delta Air Lines app in Kotlin and Jetpack Compose — shipping check-in features, migrating legacy screens and writing the tests that keep them working.",
+  "lookingFor": "",
+  "status": "open to opportunities",
+  "projectsIntro": "Things I've built outside my day job: games, graphics and tools for players."
+}
