@@ -1,0 +1,31 @@
+{%- set navLinks = [
+  { label: "Resume", href: "/" },
+  { label: "Projects", href: "/projects/" }
+] -%}
+<header class="site-header" data-menu>
+  <nav class="site-nav container" aria-label="Primary">
+    <a class="site-nav__brand" href="/">{{ site.handle }}<span class="accent">_</span></a>
+
+    <div class="site-nav__actions">
+      <a class="btn btn--primary btn--sm site-nav__pdf" href="{{ site.resumePdf }}">
+        {% include "partials/icon-download.njk" %}<span>PDF</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-menu-button>
+        <svg class="menu-button__open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="menu-button__close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+
+    <div class="site-nav__menu" id="site-menu">
+      <ul class="site-nav__links">
+        {%- for link in navLinks %}
+        <li><a href="{{ link.href }}"{% if page.url == link.href %} aria-current="page"{% endif %}>{{ link.label }}</a></li>
+        {%- endfor %}
+      </ul>
+      <ul class="site-nav__social">
+        <li><a href="{{ site.github }}" aria-label="GitHub">{% include "partials/icon-github.njk" %}<span class="site-nav__social-label">GitHub</span></a></li>
+        <li><a href="{{ site.linkedin }}" aria-label="LinkedIn">{% include "partials/icon-linkedin.njk" %}<span class="site-nav__social-label">LinkedIn</span></a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
