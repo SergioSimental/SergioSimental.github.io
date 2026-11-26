@@ -11,6 +11,7 @@ document.querySelectorAll("[data-demo]").forEach(function (media) {
     video.muted = true;
     video.playsInline = true;
     video.setAttribute("aria-label", media.getAttribute("data-demo-label") || "Demo video");
+    if (media.hasAttribute("data-demo-desc")) video.setAttribute("aria-describedby", media.getAttribute("data-demo-desc"));
     Array.prototype.slice.call(media.children).forEach(function (child) {
       if (!child.classList.contains("project-card__badge")) child.remove();
     });

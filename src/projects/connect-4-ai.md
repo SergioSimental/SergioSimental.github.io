@@ -17,4 +17,6 @@ media:
   video: /assets/media/connect4-demo.mp4
   videoBackground: "#F3F3F3"
   duration: "0:28"
+  # Read by screen readers with the Play button (WCAG 1.2.1). Describe what happens.
+  videoDescription: You (blue) and the AI (red) take turns placing pieces on an 8 by 8 board, and the AI answers each move after a short pause.
 ---

@@ -17,4 +17,6 @@ media:
   video: /assets/media/voxel-world-demo.mp4
   videoBackground: "#000000"
   duration: "0:33"
+  # Read by screen readers with the Play button (WCAG 1.2.1). Describe what happens.
+  videoDescription: The camera moves across a blocky world of grass, sand and water, showing the terrain from different angles.
 ---
