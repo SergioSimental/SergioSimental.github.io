@@ -143,6 +143,16 @@ function playGame(pick1, pick2, first = HUMAN) {
   return 0;
 }
 
+test("maxTimeMs caps thinking time and still returns a legal move", () => {
+  const engine = new Engine({ tableBits: 16 });
+  const board = Board.fromMoves([3, 3, 2, 4]);
+  const start = Date.now();
+  const { col } = engine.chooseMove(board, "expert", { maxTimeMs: 150 });
+  const ms = Date.now() - start;
+  assert.ok(ms < 400, `took ${ms} ms with a 150 ms cap`);
+  assert.ok(board.canPlay(col));
+});
+
 test("each level beats the one below it in most games", () => {
   const ladder = [["medium", "easy"], ["hard", "medium"]];
   for (const [strong, weak] of ladder) {

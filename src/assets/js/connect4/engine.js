@@ -214,10 +214,12 @@ export class Engine {
   }
 
   // Picks a column for the player to move. `level` is a key of LEVELS.
-  // Returns { col, depth, nodes }.
-  chooseMove(board, level = "hard") {
+  // `maxTimeMs`, if given, caps the level's thinking time, e.g. when the search has to run
+  // on the page itself and would freeze it. Returns { col, depth, nodes }.
+  chooseMove(board, level = "hard", { maxTimeMs = Infinity } = {}) {
     const settings = LEVELS[level];
     if (!settings) throw new Error(`Unknown level: ${level}`);
+    const timeMs = Math.min(settings.timeMs, maxTimeMs);
     // Work on a copy: the search plays and undoes moves on it, and a search stopped by the
     // time limit leaves moves on it.
     board = board.clone();
@@ -238,11 +240,11 @@ export class Engine {
 
     const depth = Math.min(settings.maxDepth, CELLS - board.moves);
     if (settings.scoreNoise > 0) {
-      return result(this.noisyChoice(board, depth, settings.scoreNoise, settings.timeMs));
+      return result(this.noisyChoice(board, depth, settings.scoreNoise, timeMs));
     }
     // Connect 4 is solved: the first player can force a win only by starting in the center.
     if (settings.openingBook && board.moves === 0) return result(3);
-    return result(this.bestMove(board, depth, settings.timeMs));
+    return result(this.bestMove(board, depth, timeMs));
   }
 
   // Iterative deepening: one move deeper each pass, until the depth or time limit.

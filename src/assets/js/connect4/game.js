@@ -27,6 +27,9 @@ let winningCells = [];
 
 let worker = null;
 let fallbackEngine = null;
+// Without a worker the search runs on the page and freezes it while it thinks, so it gets
+// at most this long. Expert plays a little weaker there, but the page stays usable.
+const FALLBACK_MAX_MS = 300;
 
 function startWorker() {
   try {
@@ -55,7 +58,8 @@ function askAi(level) {
   fallbackEngine ??= new Engine();
   // Give the page a moment to show "Thinking…" before the search blocks it.
   return new Promise((resolve) => setTimeout(() => {
-    resolve(fallbackEngine.chooseMove(Board.fromMoves(request.moves, request.firstPlayer), level));
+    const board = Board.fromMoves(request.moves, request.firstPlayer);
+    resolve(fallbackEngine.chooseMove(board, level, { maxTimeMs: FALLBACK_MAX_MS }));
   }, 30));
 }
 
