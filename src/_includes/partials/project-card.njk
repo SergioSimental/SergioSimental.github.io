@@ -5,8 +5,8 @@
   <div class="project-card__media" style="--media-bg: {{ media.background or '#1A1D22' }}; --video-bg: {{ media.videoBackground or '#000' }}"
        {%- if media.video %} data-demo="{{ media.video | url }}" data-demo-label="{{ project.title }} demo video"{% if media.videoDescription %} data-demo-desc="{{ descId }}"{% endif %}{% endif %}>
     {%- if media.kind == "board" %}
-    <div class="board" role="img" aria-label="{{ media.alt }}">
-      {%- for cell in media.pieces | boardCells %}<span class="board__cell{% if cell %} board__cell--{{ cell }}{% endif %}"></span>{% endfor %}
+    <div class="board" role="img" aria-label="{{ media.alt }}" style="--rows: {{ media.rows or 8 }}; --cols: {{ media.cols or 8 }}">
+      {%- for cell in media.pieces | boardCells(media.rows or 8, media.cols or 8) %}<span class="board__cell{% if cell %} board__cell--{{ cell }}{% endif %}"></span>{% endfor %}
     </div>
     {%- else %}
     <img src="{{ media.src }}" alt="{{ media.alt }}"

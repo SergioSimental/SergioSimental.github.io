@@ -13,7 +13,14 @@
   <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
+  {%- if pageStyles %}
+  <link rel="stylesheet" href="{{ pageStyles }}">
+  {%- endif %}
   <script src="/assets/js/site.js" defer></script>
+  {%- if pageScript %}
+  {#- Extra code for one page only (e.g. the Connect 4 game), so other pages stay light. #}
+  <script type="module" src="{{ pageScript }}"></script>
+  {%- endif %}
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>

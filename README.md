@@ -14,6 +14,7 @@ npm install
 npm start          # http://localhost:8080, reloads as you edit
 npm run build      # writes the finished site to _site/
 npm run check      # full build, then fails if any link, image, font or video is missing
+npm test           # tests for the Connect 4 engine
 ```
 
 ## Updating content
@@ -95,3 +96,19 @@ git push origin redesign
 ```
 
 Open a pull request from `redesign` into `main`. In that repo, also set **Settings → Pages → Source: GitHub Actions**. After merging, the new site replaces the old one at the root address, and the history from this repo comes with it.
+
+## Connect 4 game
+
+`/projects/connect-4/` is a playable Connect 4 against an AI, ported to JavaScript from the [Java project](https://github.com/SergioSimental/Connect4-AI). Its code only loads on that page.
+
+| File | What it does |
+| --- | --- |
+| `src/connect-4.njk` | The page |
+| `src/assets/js/connect4/engine.js` | Rules and AI: negamax with alpha-beta pruning, move ordering, a transposition table, four difficulty levels |
+| `src/assets/js/connect4/worker.js` | Runs the AI in a Web Worker so the page never freezes |
+| `src/assets/js/connect4/game.js` | Board, clicks and keyboard, screen reader announcements |
+| `src/assets/css/connect4.css` | Game styles |
+| `tests/connect4-engine.test.js` | Engine tests (`npm test`), also run by the deploy workflow |
+
+The difficulty settings are in the `LEVELS` table at the top of `engine.js`. A page can load its own CSS and JavaScript by setting `pageStyles` and `pageScript` in its front matter.
+

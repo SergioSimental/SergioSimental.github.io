@@ -1,0 +1,101 @@
+/* Connect 4 game page. Loaded only on /projects/connect-4/. Uses the theme variables
+   from site.css. */
+
+.c4 {
+  --c4-human: #3B82F6;
+  --c4-ai: #EF4444;
+  --c4-frame: #23293A;
+  --c4-hole: var(--bg);
+  /* The board comes first in the page, then the settings: to its right on wide screens,
+     below it on narrow ones. Keyboard order matches what's on screen either way. */
+  display: flex; align-items: flex-start; gap: 32px 56px;
+  padding-bottom: clamp(48px, 8vw, 80px);
+}
+
+/* A shorter intro than other pages, so the board fits on screen without scrolling. */
+.page-intro { padding: clamp(28px, 5vw, 48px) 0 clamp(24px, 3vw, 32px); }
+.page-intro__title { font-size: clamp(2.5rem, 2rem + 2.5vw, 4rem); }
+
+/* Settings */
+.c4__controls { flex: 1 1 240px; max-width: 320px; display: flex; flex-direction: column; gap: 24px; }
+.c4__field { border: 0; margin: 0; padding: 0; min-width: 0; }
+.c4__field legend { padding: 0; margin-bottom: 10px; }
+.c4__options { display: flex; flex-wrap: wrap; gap: 8px; }
+.c4__option {
+  display: inline-flex; align-items: center; gap: 8px; min-height: var(--tap); padding: 0 14px;
+  border: 1px solid var(--line-strong); border-radius: 999px; cursor: pointer;
+  font-size: 15px; color: var(--text-2);
+}
+.c4__option:has(input:checked) { border-color: var(--accent); color: var(--text); }
+.c4__option input { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; }
+.c4__start { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.c4__note { font-size: 14px; color: var(--text-muted); }
+
+/* Board */
+.c4__play { flex: 999 1 420px; min-width: 0; max-width: 500px; display: flex; flex-direction: column; gap: 16px; }
+.c4__status { min-height: 3.1em; font-size: 17px; color: var(--text); }
+
+.c4__board {
+  display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px;
+  padding: 10px; border-radius: 16px; background: var(--c4-frame);
+}
+.c4__col {
+  display: flex; flex-direction: column; gap: 6px; padding: 6px 4px 4px;
+  border: 0; border-radius: 10px; background: transparent; color: inherit; font: inherit;
+  cursor: default;
+}
+.c4__board--your-turn .c4__col:not([aria-disabled="true"]) { cursor: pointer; }
+.c4__board--your-turn .c4__col:not([aria-disabled="true"]):hover,
+.c4__board--your-turn .c4__col:not([aria-disabled="true"]):focus-visible { background: rgba(255, 255, 255, 0.07); }
+.c4__col:focus-visible { outline-offset: 0; }
+
+.c4__cell {
+  display: block; width: 100%; aspect-ratio: 1; border-radius: 50%;
+  background: var(--c4-hole);
+}
+.c4__cell--human { background: var(--c4-human); }
+/* The computer's pieces also have an inner ring, so they don't differ by color alone. */
+.c4__cell--ai { background: var(--c4-ai); box-shadow: inset 0 0 0 4px #9F1D1D, inset 0 0 0 7px var(--c4-ai), inset 0 0 0 9px #9F1D1D; }
+/* Where your piece would land in the column under the pointer or keyboard focus. */
+.c4__col:hover .c4__cell--next,
+.c4__col:focus-visible .c4__cell--next { box-shadow: inset 0 0 0 3px var(--c4-human); }
+.c4__cell--last { outline: 2px solid var(--text-faint); outline-offset: 2px; }
+.c4__cell--win { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.c4__num { font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+.c4__help { font-size: 14px; color: var(--text-muted); }
+.c4__legend { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; color: var(--text-muted); }
+.c4__legend li { display: inline-flex; align-items: center; gap: 8px; }
+.c4__swatch { width: 18px; height: 18px; border-radius: 50%; }
+.c4__swatch--human { background: var(--c4-human); }
+.c4__swatch--ai { background: var(--c4-ai); box-shadow: inset 0 0 0 3px #9F1D1D, inset 0 0 0 5px var(--c4-ai), inset 0 0 0 6px #9F1D1D; }
+
+.c4-about__body { flex: 3 1 420px; display: flex; flex-direction: column; gap: 14px; color: var(--text-2); max-width: 68ch; }
+
+/* Phones and portrait tablets: settings below the board, and an even shorter intro. */
+@media (max-width: 800px) {
+  .c4 { flex-direction: column; align-items: stretch; }
+  .c4__play { flex: none; max-width: 600px; }
+  .c4__controls { flex: none; max-width: none; }
+  .page-intro { padding: 28px 0 24px; gap: 12px; }
+  .page-intro__title { font-size: 2.5rem; }
+  .page-intro__text { font-size: 1rem; }
+}
+/* Very narrow phones: let the board use the page margins too, for wider columns. */
+@media (max-width: 400px) {
+  .c4__board { margin-inline: calc(6px - var(--gutter)); padding: 6px; gap: 2px; }
+  .c4__col { padding: 4px 2px 2px; gap: 4px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .c4__cell--drop { animation: c4-drop calc(140ms + var(--fall) * 45ms) cubic-bezier(0.45, 0, 1, 1); }
+  .c4__cell--win { animation: c4-pulse 1.2s ease-in-out 3; }
+  .c4__col { transition: background-color 0.12s; }
+}
+@keyframes c4-drop {
+  from { transform: translateY(calc(var(--fall) * -112%)); }
+}
+@keyframes c4-pulse {
+  50% { outline-color: transparent; }
+}
